@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Interaktif IPA - Materi Kalor Kelas VII</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FFFDF9',
+                            100: '#FAF4EB',
+                            200: '#F4E7D3',
+                            300: '#EBD5B3',
+                        },
+                        choco: {
+                            500: '#A66E38',
+                            600: '#8C5221',
+                            700: '#6D3B12',
+                            800: '#4A2506',
+                            900: '#2E1502'
+                        },
+                        accent: {
+                            warm: '#E87A5D',
+                            cool: '#4A90E2',
+                            yellow: '#F4B41A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF4EB;
+            color: #2E1502;
+        }
+        .pdf-page {
+            background-color: #FFFDF9;
+        }
+        @media print {
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Header Banner -->
+    <header class="bg-gradient-to-r from-choco-800 via-choco-700 to-choco-600 text-white shadow-lg no-print">
+        <div class="max-w-5xl mx-auto px-4 py-6 text-center md:text-left md:flex md:items-center md:justify-between">
+            <div class="flex items-center justify-center md:justify-start space-x-4 mb-4 md:mb-0">
+                <div class="bg-cream-100 p-3 rounded-full text-choco-700 text-3xl shadow-inner">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <div>
+                    <span class="bg-accent-yellow text-choco-900 font-bold text-xs uppercase px-2.5 py-1 rounded-full shadow-sm">
+                        LKPD Interaktif Digital
+                    </span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide mt-1">LEMBAR KERJA PESERTA DIDIK</h1>
+                    <p class="text-cream-200 text-sm md:text-base font-semibold">Mata Pelajaran IPA - Bab: Kalor dan Perubahan Wujud Benda</p>
+                </div>
+            </div>
+            <div class="text-center md:text-right bg-choco-900/40 p-3 rounded-xl border border-cream-300/30">
+                <p class="text-xs text-cream-200 uppercase font-semibold tracking-wider">Disusun Oleh:</p>
+                <p class="font-bold text-sm text-yellow-300">Khuzaimatul Fitriyah, S.Si., M.Si</p>
+                <p class="text-xs text-cream-100">Guru IPA MTsN 1 Kota Malang</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 mt-6">
+        
+        <!-- Action Buttons Bar -->
+        <div class="no-print flex flex-wrap justify-between items-center bg-cream-200 p-4 rounded-2xl shadow-sm border border-cream-300 mb-6 gap-3">
+            <div class="flex items-center space-x-2 text-choco-800 font-bold">
+                <i class="fa-solid fa-users text-lg"></i>
+                <span>Kelas VII / MTs - SMP</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="resetForm()" class="bg-white hover:bg-red-50 text-red-600 border border-red-200 px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-rotate-left"></i> Reset Form
+                </button>
+                <button onclick="downloadPDF()" class="bg-choco-600 hover:bg-choco-700 text-white px-5 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 shadow-md">
+                    <i class="fa-solid fa-file-pdf text-red-300 text-lg"></i> Unduh / Download PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Printable Document Container -->
+        <div id="lkpd-content" class="pdf-page bg-cream-50 p-6 md:p-10 rounded-2xl shadow-xl border border-cream-300 space-y-8">
+            
+            <!-- Header khusus PDF (Hanya Tampil di PDF/Cetak) -->
+            <div class="border-b-4 border-choco-700 pb-4 mb-6 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-choco-800">LKPD IPA: KALOR DAN PERUBAHANNYA</h2>
+                    <p class="text-sm font-bold text-choco-600">MTsN 1 KOTA MALANG</p>
+                    <p class="text-xs text-gray-600">Penyusun: Khuzaimatul Fitriyah, S.Si., M.Si</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-cream-200 px-3 py-1 rounded-full font-bold text-choco-800 border border-cream-300">Kelas VII / Fase D</span>
+                </div>
+            </div>
+
+            <!-- SECTION 1: Identitas Kelompok -->
+            <section class="bg-cream-100 p-5 rounded-xl border-l-4 border-choco-600 shadow-sm">
+                <h3 class="text-lg font-bold text-choco-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-id-card text-choco-600"></i> A. IDENTITAS KELOMPOK
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-choco-800 mb-1">Nama Kelompok / Kelompok Ke-:</label>
+                        <input type="text" id="namaKelompok" placeholder="Contoh: Kelompok 3 (Einstein)" class="w-full p-2.5 bg-white border border-cream-300 rounded-lg text-sm text-choco-900 focus:ring-2 focus:ring-choco-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-choco-800 mb-1">Kelas / Mts-SMP:</label>
+                        <input type="text" id="kelas" placeholder="Contoh: VII-A" class="w-full p-2.5 bg-white border border-cream-300 rounded-lg text-sm text-choco-900 focus:ring-2 focus:ring-choco-500 outline-none">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold text-choco-800 mb-1">Anggota Kelompok:</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <input type="text" id="anggota1" placeholder="1. Nama Anggota 1" class="p-2 bg-white border border-cream-300 rounded-lg text-xs text-choco-900">
+                            <input type="text" id="anggota2" placeholder="2. Nama Anggota 2" class="p-2 bg-white border border-cream-300 rounded-lg text-xs text-choco-900">
+                            <input type="text" id="anggota3" placeholder="3. Nama Anggota 3" class="p-2 bg-white border border-cream-300 rounded-lg text-xs text-choco-900">
+                            <input type="text" id="anggota4" placeholder="4. Nama Anggota 4" class="p-2 bg-white border border-cream-300 rounded-lg text-xs text-choco-900">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Tujuan & Petunjuk Belajar -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-cream-200 shadow-sm">
+                    <h4 class="font-bold text-choco-800 text-sm mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-accent-warm"></i> Tujuan Pembelajaran:
+                    </h4>
+                    <ul class="text-xs text-choco-900 space-y-1.5 list-disc list-inside">
+                        <li>Menganalisis konsep kalor dan perpindahannya pada zat.</li>
+                        <li>Menghitung besarnya kalor yang dibutuhkan untuk menaikkan suhu suatu benda.</li>
+                        <li>Memahami hubungan antara massa, kalor jenis, dan perubahan suhu.</li>
+                        <li>Menyelidiki Azas Black secara sederhana melalui simulasi.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-cream-200 shadow-sm">
+                    <h4 class="font-bold text-choco-800 text-sm mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-accent-cool"></i> Petunjuk Penggunaan LKPD:
+                    </h4>
+                    <ol class="text-xs text-choco-900 space-y-1.5 list-decimal list-inside">
+                        <li>Bacalah modul ringkas tentang rumus dasar kalor: <strong>Q = m × c × ΔT</strong>.</li>
+                        <li>Lakukan eksperimen simulasi interaktif pemanasan air.</li>
+                        <li>Isi tabel pengamatan sesuai hasil kalkulasi dari simulasi.</li>
+                        <li>Jawab pertanyaan analisis dan diskusikan bersama kelompok.</li>
+                        <li>Klik tombol <strong>Download PDF</strong> untuk menyimpannya.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Simulasi Interaktif Pemanasan Air -->
+            <section class="bg-white p-6 rounded-2xl border-2 border-choco-500/30 shadow-md">
+                <div class="flex items-center justify-between mb-4 border-b border-cream-200 pb-2">
+                    <h3 class="text-lg font-bold text-choco-800 flex items-center gap-2">
+                        <i class="fa-solid fa-flask-vial text-accent-warm"></i> B. SIMULASI INTERAKTIF: PERHITUNGAN KALOR
+                    </h3>
+                    <span class="text-xs font-semibold bg-accent-warm/10 text-accent-warm px-3 py-1 rounded-full">Praktikum Virtual</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Controls -->
+                    <div class="space-y-4 bg-cream-100 p-4 rounded-xl border border-cream-300">
+                        <h4 class="font-bold text-xs text-choco-800 uppercase tracking-wider">Variabel Eksperimen</h4>
+                        
+                        <div>
+                            <label class="block text-xs font-bold text-choco-800 mb-1">Massa Air (m): <span id="massaVal" class="text-choco-600 font-extrabold">1.0</span> kg</label>
+                            <input type="range" id="massaInput" min="0.5" max="5.0" step="0.5" value="1.0" class="w-full accent-choco-600" oninput="updateSimulation()">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-choco-800 mb-1">Suhu Awal (T₁): <span id="tAwalVal" class="text-choco-600 font-extrabold">25</span> °C</label>
+                            <input type="range" id="tAwalInput" min="10" max="40" step="1" value="25" class="w-full accent-choco-600" oninput="updateSimulation()">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-choco-800 mb-1">Suhu Akhir (T₂): <span id="tAkhirVal" class="text-choco-600 font-extrabold">75</span> °C</label>
+                            <input type="range" id="tAkhirInput" min="40" max="100" step="1" value="75" class="w-full accent-choco-600" oninput="updateSimulation()">
+                        </div>
+
+                        <div class="text-xs text-gray-600 bg-white p-2.5 rounded-lg border border-cream-200">
+                            <strong>Kalor Jenis Air (c):</strong><br>
+                            <span class="text-choco-700 font-bold">4.200 J/kg°C</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Representation -->
+                    <div class="flex flex-col items-center justify-center bg-cream-50 p-4 rounded-xl border border-cream-200 relative overflow-hidden">
+                        <div id="waterContainer" class="w-28 h-40 border-4 border-gray-400 rounded-b-2xl relative flex items-end overflow-hidden bg-blue-50/50 shadow-inner">
+                            <div id="waterLevel" class="w-full bg-blue-400 transition-all duration-300 relative" style="height: 40%;">
+                                <!-- Bubbles -->
+                                <div id="bubbles" class="absolute inset-0 opacity-0 transition-opacity duration-300 flex justify-around items-end pb-2">
+                                    <span class="animate-bounce text-xs">🫧</span>
+                                    <span class="animate-pulse text-xs">🫧</span>
+                                    <span class="animate-bounce text-xs">🫧</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Burner Flame -->
+                        <div id="flame" class="text-2xl mt-1 opacity-80 text-orange-500 animate-pulse">🔥</div>
+                        <p class="text-xs text-choco-700 font-bold mt-2">Gelas Kimia Pemanas</p>
+                    </div>
+
+                    <!-- Live Calculation Results -->
+                    <div class="bg-choco-800 text-white p-4 rounded-xl flex flex-col justify-between shadow-inner">
+                        <div>
+                            <h4 class="font-bold text-xs text-cream-200 uppercase tracking-wider mb-2">Hasil Perhitungan Simulasi</h4>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between border-b border-choco-600 pb-1">
+                                    <span>Perubahan Suhu (ΔT):</span>
+                                    <span id="deltaTResult" class="font-bold text-yellow-300">50 °C</span>
+                                </div>
+                                <div class="flex justify-between border-b border-choco-600 pb-1">
+                                    <span>Rumus Kalor:</span>
+                                    <span class="font-mono text-cream-200">Q = m × c × ΔT</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="my-4 text-center bg-choco-900/60 p-3 rounded-lg border border-choco-600">
+                            <p class="text-xs text-cream-300 font-semibold">Kalor Yang Dibutuhkan (Q):</p>
+                            <p id="kalorResult" class="text-2xl font-extrabold text-yellow-300 mt-1">210.000 Joule</p>
+                            <p id="kJResult" class="text-xs text-cream-200 font-medium">(210 kJ)</p>
+                        </div>
+
+                        <button onclick="salinKeTabel()" class="w-full bg-accent-warm hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition shadow">
+                            <i class="fa-solid fa-plus-circle"></i> Salin Data ke Tabel
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Tabel Hasil Pengamatan -->
+            <section class="bg-white p-6 rounded-2xl border border-cream-300 shadow-sm">
+                <h3 class="text-lg font-bold text-choco-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-table text-choco-600"></i> C. TABEL HASIL PENGAMATAN SIMULASI
+                </h3>
+                <p class="text-xs text-choco-700 mb-4">Gunakan tombol "Salin Data ke Tabel" di atas atau isi data percobaan kelompok Anda secara manual di bawah ini:</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left text-choco-900 border-collapse border border-cream-300 rounded-lg">
+                        <thead class="bg-cream-200 text-choco-800 uppercase font-bold text-center">
+                            <tr>
+                                <th class="p-2 border border-cream-300">No</th>
+                                <th class="p-2 border border-cream-300">Massa Air (m) [kg]</th>
+                                <th class="p-2 border border-cream-300">Suhu Awal (T₁) [°C]</th>
+                                <th class="p-2 border border-cream-300">Suhu Akhir (T₂) [°C]</th>
+                                <th class="p-2 border border-cream-300">ΔT [°C]</th>
+                                <th class="p-2 border border-cream-300">Kalor Jenis (c) [J/kg°C]</th>
+                                <th class="p-2 border border-cream-300">Kalor (Q) [Joule]</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelPengamatan" class="divide-y divide-cream-200 text-center">
+                            <tr>
+                                <td class="p-2 border border-cream-300 font-bold">1</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" value="1.0"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" value="25"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" value="75"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" value="50"></td>
+                                <td class="p-2 border border-cream-300">4200</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 font-bold text-choco-700 focus:outline-none" value="210000"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-cream-300 font-bold">2</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300">4200</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 font-bold text-choco-700 focus:outline-none" placeholder="-"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-cream-300 font-bold">3</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 focus:outline-none" placeholder="-"></td>
+                                <td class="p-2 border border-cream-300">4200</td>
+                                <td class="p-2 border border-cream-300"><input type="number" class="w-full text-center border-b border-cream-300 font-bold text-choco-700 focus:outline-none" placeholder="-"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Pertanyaan Analisis & Diskusi -->
+            <section class="bg-white p-6 rounded-2xl border border-cream-300 shadow-sm space-y-6">
+                <h3 class="text-lg font-bold text-choco-800 flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-accent-warm"></i> D. DISKUSI DAN ANALISIS KELOMPOK
+                </h3>
+
+                <!-- Soal 1 -->
+                <div class="space-y-2">
+                    <p class="text-xs font-bold text-choco-900">
+                        1. Berdasarkan data hasil pemanasan, bagaimana hubungan antara massa air (m) dengan jumlah kalor (Q) yang dibutuhkan jika kenaikan suhunya sama?
+                    </p>
+                    <textarea id="jawab1" rows="3" placeholder="Tuliskan analisis kelompok Anda di sini..." class="w-full p-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-choco-900 focus:ring-2 focus:ring-choco-500 outline-none"></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="space-y-2">
+                    <p class="text-xs font-bold text-choco-900">
+                        2. Mengapa air laut terasa dingin di siang hari yang terik, sedangkan pasir di tepi pantai terasa sangat panas? Kaitkan jawabanmu dengan konsep Kalor Jenis (c)!
+                    </p>
+                    <textarea id="jawab2" rows="3" placeholder="Tuliskan alasan fenomena ini di sini..." class="w-full p-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-choco-900 focus:ring-2 focus:ring-choco-500 outline-none"></textarea>
+                </div>
+
+                <!-- Soal 3 (Pilihan Ganda Interaktif / Latihan Soal) -->
+                <div class="bg-cream-100 p-4 rounded-xl border border-cream-300 space-y-3">
+                    <p class="text-xs font-bold text-choco-900">
+                        3. Latihan Soal Hitungan Kelompok:
+                    </p>
+                    <p class="text-xs text-choco-800 bg-white p-3 rounded-lg border border-cream-200">
+                        Minyak goreng sebanyak 2 kg bersuhu 30 °C dipanaskan hingga suhunya mencapai 80 °C. Jika kalor jenis minyak goreng adalah 2.000 J/kg°C, berapakah kalor yang diserap minyak goreng tersebut?
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <input type="number" id="jawabanHitungan" placeholder="Masukkan angka Joule (misal: 100000)" class="p-2.5 bg-white border border-cream-300 rounded-lg text-xs w-full sm:w-1/2 text-choco-900 font-semibold focus:outline-none">
+                        <button onclick="cekJawabanHitungan()" class="w-full sm:w-auto bg-choco-600 hover:bg-choco-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition no-print">
+                            Cek Jawaban
+                        </button>
+                    </div>
+                    <div id="feedbackHitungan" class="text-xs font-bold hidden"></div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Kesimpulan -->
+            <section class="bg-cream-100 p-6 rounded-2xl border border-cream-300">
+                <h3 class="text-lg font-bold text-choco-800 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-flag-checkered text-choco-600"></i> E. KESIMPULAN
+                </h3>
+                <p class="text-xs text-choco-700 mb-2">Buatlah kesimpulan hasil pembelajaran dan diskusi hari ini secara ringkas:</p>
+                <textarea id="kesimpulan" rows="3" placeholder="Tuliskan kesimpulan pembelajaran kelompok..." class="w-full p-3 bg-white border border-cream-300 rounded-xl text-xs text-choco-900 focus:ring-2 focus:ring-choco-500 outline-none"></textarea>
+            </section>
+
+            <!-- Footer Tanda Tangan PDF -->
+            <div class="pt-8 grid grid-cols-2 text-center text-xs font-bold text-choco-900 border-t border-cream-300">
+                <div>
+                    <p>Mengetahui,</p>
+                    <p class="mt-1 font-semibold text-gray-600">Guru Mata Pelajaran IPA</p>
+                    <div class="h-16"></div>
+                    <p class="underline text-choco-800">Khuzaimatul Fitriyah, S.Si., M.Si</p>
+                    <p class="text-[10px] text-gray-500 font-normal">NIP. MTsN 1 Kota Malang</p>
+                </div>
+                <div>
+                    <p>Malang, <span id="currentDate">-- -- 2026</span></p>
+                    <p class="mt-1 font-semibold text-gray-600">Ketua Kelompok</p>
+                    <div class="h-16"></div>
+                    <p id="ttdKetua" class="underline text-choco-800">( ..................................... )</p>
+                    <p class="text-[10px] text-gray-500 font-normal">Nama Siswa</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Set Current Date
+        document.addEventListener("DOMContentLoaded", () => {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').innerText = today.toLocaleDateString('id-ID', options);
+            updateSimulation();
+        });
+
+        // Interactive Simulation Logic
+        function updateSimulation() {
+            const m = parseFloat(document.getElementById('massaInput').value);
+            const t1 = parseInt(document.getElementById('tAwalInput').value);
+            let t2 = parseInt(document.getElementById('tAkhirInput').value);
+
+            // Validation: T2 should be greater than T1
+            if (t2 <= t1) {
+                t2 = t1 + 1;
+                document.getElementById('tAkhirInput').value = t2;
+            }
+
+            document.getElementById('massaVal').innerText = m.toFixed(1);
+            document.getElementById('tAwalVal').innerText = t1;
+            document.getElementById('tAkhirVal').innerText = t2;
+
+            const c = 4200; // J/kg°C
+            const deltaT = t2 - t1;
+            const Q = m * c * deltaT;
+
+            document.getElementById('deltaTResult').innerText = deltaT + ' °C';
+            document.getElementById('kalorResult').innerText = Q.toLocaleString('id-ID') + ' Joule';
+            document.getElementById('kJResult').innerText = '(' + (Q/1000).toLocaleString('id-ID') + ' kJ)';
+
+            // Visual updates
+            const waterLevel = document.getElementById('waterLevel');
+            const bubbles = document.getElementById('bubbles');
+            
+            // Set height based on mass
+            waterLevel.style.height = (20 + (m * 12)) + '%';
+            
+            // Show bubbles if heat deltaT is high
+            if (deltaT > 40) {
+                bubbles.style.opacity = '1';
+            } else {
+                bubbles.style.opacity = '0';
+            }
+        }
+
+        // Salin data dari simulasi ke tabel pengamatan
+        function salinKeTabel() {
+            const m = document.getElementById('massaInput').value;
+            const t1 = document.getElementById('tAwalInput').value;
+            const t2 = document.getElementById('tAkhirInput').value;
+            const deltaT = t2 - t1;
+            const Q = m * 4200 * deltaT;
+
+            const rows = document.querySelectorAll('#tabelPengamatan tr');
+            let filled = false;
+
+            for (let row of rows) {
+                const inputs = row.querySelectorAll('input');
+                if (inputs[0] && (inputs[0].value === '' || inputs[0].placeholder === '-')) {
+                    inputs[0].value = m;
+                    inputs[1].value = t1;
+                    inputs[2].value = t2;
+                    inputs[3].value = deltaT;
+                    inputs[4].value = Q;
+                    filled = true;
+                    break;
+                }
+            }
+
+            if (!filled) {
+                alert('Tabel pengamatan sudah penuh! Anda bisa mengubah nilai di dalam tabel secara langsung.');
+            }
+        }
+
+        // Cek Jawaban Soal Hitungan
+        function cekJawabanHitungan() {
+            const userAns = parseFloat(document.getElementById('jawabanHitungan').value);
+            const feedback = document.getElementById('feedbackHitungan');
+            feedback.classList.remove('hidden', 'text-green-700', 'text-red-700');
+
+            // Q = 2 kg * 2000 J/kg°C * (80 - 30) = 2 * 2000 * 50 = 200.000 J
+            const correctAns = 200000;
+
+            if (userAns === correctAns) {
+                feedback.innerText = "✓ Jawaban Tepat! Q = 2 × 2.000 × (80 - 30) = 200.000 Joule.";
+                feedback.classList.add('text-green-700');
+            } else {
+                feedback.innerText = "✕ Jawaban belum tepat. Petunjuk: Q = m × c × ΔT = 2 × 2000 × 50";
+                feedback.classList.add('text-red-700');
+            }
+        }
+
+        // Update Tanda Tangan Nama Ketua Kelompok
+        document.getElementById('anggota1').addEventListener('input', function(e) {
+            const val = e.target.value;
+            document.getElementById('ttdKetua').innerText = val ? val : '( ..................................... )';
+        });
+
+        // Reset Form
+        function resetForm() {
+            if (confirm("Apakah Anda yakin ingin mengosongkan semua isian LKPD?")) {
+                document.querySelectorAll('input').forEach(i => i.value = '');
+                document.querySelectorAll('textarea').forEach(t => t.value = '');
+                document.getElementById('massaInput').value = 1.0;
+                document.getElementById('tAwalInput').value = 25;
+                document.getElementById('tAkhirInput').value = 75;
+                updateSimulation();
+            }
+        }
+
+        // Export/Download to PDF Function
+        function downloadPDF() {
+            const element = document.getElementById('lkpd-content');
+            const namaKelompok = document.getElementById('namaKelompok').value || 'Kelompok_Siswa';
+            
+            // PDF Options
+            const opt = {
+                margin:       [0.3, 0.3, 0.3, 0.3],
+                filename:     `LKPD_Kalor_${namaKelompok.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Temporary styling during export
+            element.classList.add('bg-white');
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.classList.remove('bg-white');
+            });
+        }
+    </script>
+</body>
+</html>
